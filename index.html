@@ -32,99 +32,81 @@
     text-align: center;
     line-height: 1.05;
     margin-bottom: 12px;
-    letter-spacing: -0.5px;
   }
   @media (min-width: 768px) {
-    h1 { font-size: 42px; }
+    h1 { font-size: 40px; }
   }
   h1 span { color: #D4FF00; }
   .lead {
     text-align: center;
     font-size: 16px;
     color: #eee;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
     line-height: 1.4;
   }
-  .video-thumb {
+  .video-box {
     position: relative;
     width: 100%;
     padding-bottom: 56.25%;
     margin-bottom: 24px;
     border-radius: 14px;
     overflow: hidden;
-    cursor: pointer;
     background: #111;
+    cursor: pointer;
   }
-  .video-thumb img {
+  .video-box img {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-  .play-btn {
+  .play {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 70px;
-    height: 70px;
-    background: rgba(0,0,0,0.6);
+    width: 68px;
+    height: 68px;
+    background: rgba(0,0,0,0.55);
     border: 3px solid #D4FF00;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
-  .play-btn::after {
+  .play::after {
     content: '';
-    width: 0;
-    height: 0;
-    border-left: 22px solid #D4FF00;
-    border-top: 14px solid transparent;
-    border-bottom: 14px solid transparent;
-    margin-left: 4px;
+    position: absolute;
+    top: 50%;
+    left: 54%;
+    transform: translate(-50%, -50%);
+    border-left: 20px solid #D4FF00;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
   }
-  .video-embed {
-    display: none;
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-    margin-bottom: 24px;
-    border-radius: 14px;
-    overflow: hidden;
-  }
-  .video-embed iframe {
+  .video-box iframe {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     border: 0;
+    display: none;
   }
   .cta {
     display: block;
     text-align: center;
-    padding: 17px 16px;
+    padding: 16px;
     border-radius: 12px;
     font-weight: 800;
     font-size: 17px;
     text-decoration: none;
     margin-bottom: 12px;
   }
-  .cta-main {
-    background: #D4FF00;
-    color: #000;
-  }
-  .cta-alt {
-    background: transparent;
-    color: #D4FF00;
-    border: 2px solid #D4FF00;
-  }
+  .cta-main { background: #D4FF00; color: #000; }
+  .cta-alt { background: transparent; color: #D4FF00; border: 2px solid #D4FF00; }
   .note {
     text-align: center;
     font-size: 13px;
     color: #999;
-    margin-top: 16px;
+    margin-top: 14px;
   }
 </style>
 </head>
@@ -136,15 +118,10 @@
       <h1>THE BUSINESS THAT<br>RUNS ON <span>FANS</span></h1>
       <p class="lead">Creators sit on the business side of SuperOne. Fans play. You earn.</p>
 
-      <!-- Cover image as video thumbnail -->
-      <div class="video-thumb" onclick="playVideo()">
+      <div class="video-box" id="videoBox" onclick="play()">
         <img src="Superone%20Cover.png" alt="SuperOne">
-        <div class="play-btn"></div>
-      </div>
-
-      <!-- Actual video (hidden until click) -->
-      <div class="video-embed" id="videoEmbed">
-        <iframe src="" id="videoFrame" allow="autoplay" allowfullscreen></iframe>
+        <div class="play"></div>
+        <iframe id="vid" allow="autoplay" allowfullscreen></iframe>
       </div>
 
       <a href="https://super.one/YT7nuQczPR+1" class="cta cta-main">Start in the App</a>
@@ -155,12 +132,15 @@
   </div>
 
   <script>
-    function playVideo() {
-      document.querySelector('.video-thumb').style.display = 'none';
-      const embed = document.getElementById('videoEmbed');
-      const frame = document.getElementById('videoFrame');
-      frame.src = 'https://drive.google.com/file/d/1fwQMohLL-fD164j6oPRusbA5KIyx9hRz/preview';
-      embed.style.display = 'block';
+    function play() {
+      const box = document.getElementById('videoBox');
+      const img = box.querySelector('img');
+      const playBtn = box.querySelector('.play');
+      const iframe = document.getElementById('vid');
+      img.style.display = 'none';
+      playBtn.style.display = 'none';
+      iframe.style.display = 'block';
+      iframe.src = 'https://drive.google.com/file/d/1fwQMohLL-fD164j6oPRusbA5KIyx9hRz/preview';
     }
   </script>
 </body>
