@@ -44,7 +44,7 @@
     margin-bottom: 20px;
     line-height: 1.4;
   }
-  .video-box {
+  .video-container {
     position: relative;
     width: 100%;
     padding-bottom: 56.25%;
@@ -52,43 +52,13 @@
     border-radius: 14px;
     overflow: hidden;
     background: #111;
-    cursor: pointer;
   }
-  .video-box img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .play {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 68px;
-    height: 68px;
-    background: rgba(0,0,0,0.55);
-    border: 3px solid #D4FF00;
-    border-radius: 50%;
-  }
-  .play::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 54%;
-    transform: translate(-50%, -50%);
-    border-left: 20px solid #D4FF00;
-    border-top: 12px solid transparent;
-    border-bottom: 12px solid transparent;
-  }
-  .video-box iframe {
+  .video-container iframe {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     border: 0;
-    display: none;
   }
   .cta {
     display: block;
@@ -118,10 +88,8 @@
       <h1>THE BUSINESS THAT<br>RUNS ON <span>FANS</span></h1>
       <p class="lead">Creators sit on the business side of SuperOne. Fans play. You earn.</p>
 
-      <div class="video-box" id="videoBox" onclick="play()">
-        <img src="Superone%20Cover.png" alt="SuperOne">
-        <div class="play"></div>
-        <iframe id="vid" allow="autoplay" allowfullscreen></iframe>
+      <div class="video-container">
+        <div id="player"></div>
       </div>
 
       <a href="https://super.one/YT7nuQczPR+1" class="cta cta-main">Start in the App</a>
@@ -132,16 +100,30 @@
   </div>
 
   <script>
-    function play() {
-      const box = document.getElementById('videoBox');
-      const img = box.querySelector('img');
-      const playBtn = box.querySelector('.play');
-      const iframe = document.getElementById('vid');
-      img.style.display = 'none';
-      playBtn.style.display = 'none';
-      iframe.style.display = 'block';
-      iframe.src = 'https://drive.google.com/file/d/1fwQMohLL-fD164j6oPRusbA5KIyx9hRz/preview';
+    const videos = ['2dXH2N0apWA', 'pR_H_rOzMFs', 'JnSDOBvhAQw'];
+    let current = 0;
+    let player;
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '100%',
+        width: '100%',
+        videoId: videos[0],
+        playerVars: { rel: 0, modestbranding: 1 },
+        events: { onStateChange: onPlayerStateChange }
+      });
     }
+
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.ENDED) {
+        current = (current + 1) % videos.length;
+        player.loadVideoById(videos[current]);
+      }
+    }
+
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
   </script>
 </body>
 </html>
