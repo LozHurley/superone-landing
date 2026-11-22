@@ -3,117 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SuperOne | Be on the Business Side</title>
+<title>SuperOne | The Business That Runs on Fans</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: #000;
-    color: #f5ebd0;
-    line-height: 1.6;
+    color: #fff;
   }
-  .container {
-    max-width: 480px;
+  .wrap {
+    max-width: 420px;
     margin: 0 auto;
-    padding: 16px 16px 40px;
   }
-  .cover-image {
+  .cover {
     width: 100%;
-    border-radius: 12px;
-    margin-bottom: 20px;
     display: block;
+  }
+  .inner {
+    padding: 22px 16px 40px;
   }
   .logo {
+    width: 48px;
     display: block;
-    width: 64px;
-    height: auto;
-    margin: 0 auto 12px;
+    margin: 0 auto 14px;
   }
   h1 {
-    color: #E8A317;
     font-size: 32px;
+    font-weight: 900;
     text-align: center;
-    margin-bottom: 8px;
-    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 12px;
     letter-spacing: -0.5px;
   }
-  .subtitle {
-    text-align: center;
-    color: #f5ebd0;
-    font-size: 15px;
-    margin-bottom: 24px;
+  h1 span {
+    color: #D4FF00;
   }
-  .video-wrapper {
+  .lead {
+    text-align: center;
+    font-size: 16px;
+    color: #eee;
+    margin-bottom: 22px;
+    line-height: 1.4;
+  }
+  .video {
     position: relative;
     width: 100%;
     padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
+    margin-bottom: 24px;
     border-radius: 12px;
-    margin-bottom: 28px;
+    overflow: hidden;
     background: #111;
   }
-  .video-wrapper iframe {
+  .video iframe {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
     border: 0;
-    border-radius: 12px;
   }
-  .buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  .btn {
+  .cta {
     display: block;
     text-align: center;
-    padding: 16px 20px;
-    border-radius: 12px;
+    padding: 17px 16px;
+    border-radius: 10px;
+    font-weight: 800;
     font-size: 17px;
-    font-weight: 600;
     text-decoration: none;
-    transition: transform 0.15s ease;
+    margin-bottom: 12px;
+    letter-spacing: 0.2px;
   }
-  .btn:active { transform: scale(0.98); }
-  .btn-primary {
-    background: #E8A317;
+  .cta-main {
+    background: #D4FF00;
     color: #000;
   }
-  .btn-secondary {
+  .cta-alt {
     background: transparent;
-    color: #E8A317;
-    border: 2px solid #E8A317;
+    color: #D4FF00;
+    border: 2px solid #D4FF00;
   }
-  .footer {
+  .note {
     text-align: center;
     font-size: 13px;
-    color: #888;
-    margin-top: 32px;
+    color: #999;
+    margin-top: 16px;
   }
 </style>
 </head>
 <body>
-  <div class="container">
-    <img src="https://drive.google.com/uc?export=view&id=1NLLHeaogfnUBYMEuFiCZewJkZBiHkuQC" alt="SuperOne" class="cover-image">
-    <img src="https://drive.google.com/uc?export=view&id=1_QOkAYIoh6OEyfpcFTSKY8ipA83Ry0oU" alt="SuperOne Logo" class="logo">
-    <h1>SuperOne</h1>
-    <p class="subtitle">Be on the business side of the game. Creators earn in real time from fan engagement.</p>
-    <div class="video-wrapper">
-      <iframe 
-        src="https://drive.google.com/file/d/1fwQMohLL-fD164j6oPRusbA5KIyx9hRz/preview" 
-        allow="autoplay" 
-        allowfullscreen>
-      </iframe>
-    </div>
-    <div class="buttons">
-      <a href="https://super.one/YT7nuQczPR+1" class="btn btn-primary">Get Started in the App</a>
-      <a href="https://www.skool.com/the-passive-income-lab-7776/about" class="btn btn-secondary">Learn More in Skool</a>
-    </div>
-    <div class="footer">
-      SuperOne is a football fan engagement platform. Creators sit on the business side.
+  <div class="wrap">
+    <img src="superone cover.png" alt="SuperOne" class="cover">
+
+    <div class="inner">
+      <img src="logo.jpg" alt="" class="logo">
+
+      <h1>THE BUSINESS THAT<br>RUNS ON <span>FANS</span></h1>
+      <p class="lead">Creators sit on the business side of SuperOne. Fans play. You earn.</p>
+
+      <div class="video">
+        <iframe src="https://drive.google.com/file/d/1fwQMohLL-fD164j6oPRusbA5KIyx9hRz/preview" allow="autoplay" allowfullscreen></iframe>
+      </div>
+
+      <a href="https://super.one/YT7nuQczPR+1" class="cta cta-main">Start in the App</a>
+      <a href="https://www.skool.com/the-passive-income-lab-7776/about" class="cta cta-alt">See How Creators Earn</a>
+
+      <p class="note">Football first. Then other sports. Launching with ByteDance.</p>
     </div>
   </div>
 </body>
