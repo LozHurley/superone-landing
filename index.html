@@ -115,6 +115,9 @@
     }
 
     function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.PLAYING) {
+        player.setPlaybackQuality('hd1080');
+      }
       if (event.data === YT.PlayerState.ENDED) {
         current = (current + 1) % videos.length;
         player.loadVideoById(videos[current]);
