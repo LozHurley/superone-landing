@@ -12,15 +12,14 @@
     color: #fff;
   }
   .wrap {
-    max-width: 420px;
+    max-width: 480px;
     margin: 0 auto;
   }
-  .cover {
-    width: 100%;
-    display: block;
+  @media (min-width: 768px) {
+    .wrap { max-width: 640px; }
   }
   .inner {
-    padding: 22px 16px 40px;
+    padding: 20px 16px 40px;
   }
   .logo {
     width: 48px;
@@ -35,9 +34,10 @@
     margin-bottom: 12px;
     letter-spacing: -0.5px;
   }
-  h1 span {
-    color: #D4FF00;
+  @media (min-width: 768px) {
+    h1 { font-size: 42px; }
   }
+  h1 span { color: #D4FF00; }
   .lead {
     text-align: center;
     font-size: 16px;
@@ -45,16 +45,56 @@
     margin-bottom: 22px;
     line-height: 1.4;
   }
-  .video {
+  .video-thumb {
     position: relative;
     width: 100%;
     padding-bottom: 56.25%;
     margin-bottom: 24px;
-    border-radius: 12px;
+    border-radius: 14px;
     overflow: hidden;
+    cursor: pointer;
     background: #111;
   }
-  .video iframe {
+  .video-thumb img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    background: rgba(0,0,0,0.6);
+    border: 3px solid #D4FF00;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .play-btn::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 22px solid #D4FF00;
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    margin-left: 4px;
+  }
+  .video-embed {
+    display: none;
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    margin-bottom: 24px;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .video-embed iframe {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -65,12 +105,11 @@
     display: block;
     text-align: center;
     padding: 17px 16px;
-    border-radius: 10px;
+    border-radius: 12px;
     font-weight: 800;
     font-size: 17px;
     text-decoration: none;
     margin-bottom: 12px;
-    letter-spacing: 0.2px;
   }
   .cta-main {
     background: #D4FF00;
@@ -91,16 +130,21 @@
 </head>
 <body>
   <div class="wrap">
-    <img src="Superone%20Cover.png" alt="SuperOne" class="cover">
-
     <div class="inner">
       <img src="logo.jpg" alt="" class="logo">
 
       <h1>THE BUSINESS THAT<br>RUNS ON <span>FANS</span></h1>
       <p class="lead">Creators sit on the business side of SuperOne. Fans play. You earn.</p>
 
-      <div class="video">
-        <iframe src="https://drive.google.com/file/d/1fwQMohLL-fD164j6oPRusbA5KIyx9hRz/preview" allow="autoplay" allowfullscreen></iframe>
+      <!-- Cover image as video thumbnail -->
+      <div class="video-thumb" onclick="playVideo()">
+        <img src="Superone%20Cover.png" alt="SuperOne">
+        <div class="play-btn"></div>
+      </div>
+
+      <!-- Actual video (hidden until click) -->
+      <div class="video-embed" id="videoEmbed">
+        <iframe src="" id="videoFrame" allow="autoplay" allowfullscreen></iframe>
       </div>
 
       <a href="https://super.one/YT7nuQczPR+1" class="cta cta-main">Start in the App</a>
@@ -109,5 +153,15 @@
       <p class="note">Football first. Then other sports. Launching with ByteDance.</p>
     </div>
   </div>
+
+  <script>
+    function playVideo() {
+      document.querySelector('.video-thumb').style.display = 'none';
+      const embed = document.getElementById('videoEmbed');
+      const frame = document.getElementById('videoFrame');
+      frame.src = 'https://drive.google.com/file/d/1fwQMohLL-fD164j6oPRusbA5KIyx9hRz/preview';
+      embed.style.display = 'block';
+    }
+  </script>
 </body>
 </html>
